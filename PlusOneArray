@@ -1,0 +1,66 @@
+public class Solution {
+    
+    // increment number in array by 1
+    public int[] PlusOne(int[] digits) {
+        
+        
+        // conditions for empty array        
+        if(digits == null)
+        {
+            digits = new int[1];
+            digits[0] = 1;
+            return digits;
+        }
+        if(digits.Length == 0)
+        {
+            digits = new int[1];
+            digits[0] = 1;
+            return digits;
+        }
+        
+        // set initial values and iterators
+        int remainder = 1,
+            i = digits.Length -1;
+        
+        
+        // traverse array from end to beginning
+        // adding one to the last element
+        // and break if carry over is 0
+        while( i >= 0)
+        {
+            // add remainder to current
+            // array 
+            digits[i]+=remainder;
+            
+            // if adding one to array element
+            // increased past 10 remainder is 1
+            // set array value to value mod 10
+            if(digits[i] > 9)
+            {
+                digits[i] %= 10;
+                remainder = 1;
+                
+                // consider the case where the 
+                // first digit is a 9 and 
+                // we need to add 1
+                if( i == 0 && remainder == 1)
+                { 
+                    // allocate new array with one extra element
+                    int[] tmp = new int[digits.Length+1];
+                    tmp[0] = 1;
+                    Array.Copy(digits,0,tmp,1,digits.Length);
+                    
+                    // return new array
+                    return tmp;
+                }
+            }
+            else
+                break;
+            
+            i--;
+        }
+        
+        // return updated array
+        return digits;
+    }
+}
