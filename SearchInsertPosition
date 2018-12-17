@@ -1,0 +1,30 @@
+public class Solution {
+    public int SearchInsert(int[] nums, int target) {
+        
+        if(nums.Length == 0)
+            return 0;
+        if(nums.Length == 1)
+            if(nums[0] < target)
+                return 1;
+            else
+                return 0;
+        
+        int i = 0;
+        
+        // loop through until 
+        // a number in the array is greater
+        // or equal to target
+        // if end of array is reached
+        // return i
+        while( i < nums.Length)
+        {
+            if(nums[i] >= target)
+            {
+                break;
+            }
+            i++;
+        }
+        
+        return i;
+    }// end search
+}
