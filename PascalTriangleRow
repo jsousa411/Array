@@ -1,0 +1,50 @@
+public class Solution {
+    public IList<IList<int>> Generate(int numRows) {
+        
+        int i =0,
+            x = 0,
+            j = 0,
+            rowCount = 1;
+        int[] Arr,
+              PreviousRow;
+        
+        IList<int> row = new List<int>();
+        IList<IList<int>> result = new List<IList<int>>();
+        
+        // first row of triangle
+        Arr = new int[1]{1};
+        row = Arr.ToList();
+        result.Add(row);
+        
+        // second row of triangle
+        Arr = new int[2]{1,1};
+        row = Arr.ToList();
+        result.Add(row);
+        
+        i = 2;
+        rowCount = i+1;
+        // second row of triangle
+        Arr = new int[rowCount];
+        PreviousRow = result[i - 1].ToArray();
+        
+        while( i < numRows-1)
+        {
+            Arr[0] = 1;
+            Arr[rowCount-1] = 1;
+          
+            for(j = 0, x = 1; j < rowCount-2; j++,x++)
+            {
+                    Arr[x] = PreviousRow[j]+PreviousRow[j+1];
+            }
+            
+            row = Arr.ToList();
+            result.Add(row);
+            PreviousRow = new int[rowCount];
+            Array.Copy(Arr,PreviousRow,Arr.Length);
+            rowCount++;
+            Arr = new int[rowCount];
+        }
+        
+        return result;
+    }
+}
