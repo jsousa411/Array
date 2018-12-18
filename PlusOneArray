@@ -1,3 +1,7 @@
+/*
+    Run time complexity is O(n) as the digits array is traversed once
+    Space complexity is O(n) as it takes n elements in digits array
+*/
 public class Solution {
     
     // increment number in array by 1
