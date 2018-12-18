@@ -1,50 +1,76 @@
 public class Solution {
-    public IList<IList<int>> Generate(int numRows) {
-        
-        int i =0,
-            x = 0,
-            j = 0,
-            rowCount = 1;
-        int[] Arr,
-              PreviousRow;
-        
-        IList<int> row = new List<int>();
-        IList<IList<int>> result = new List<IList<int>>();
-        
-        // first row of triangle
-        Arr = new int[1]{1};
-        row = Arr.ToList();
-        result.Add(row);
-        
-        // second row of triangle
-        Arr = new int[2]{1,1};
-        row = Arr.ToList();
-        result.Add(row);
-        
-        i = 2;
-        rowCount = i+1;
-        // second row of triangle
-        Arr = new int[rowCount];
-        PreviousRow = result[i - 1].ToArray();
-        
-        while( i < numRows-1)
+            /// <summary>
+        /// Generate the kths rows of a pascal triangle
+        /// </summary>
+        /// <param name="numRows"></param>
+        /// <returns></returns>
+        static public IList<IList<int>> GenerateKthPascals(int numRows)
         {
-            Arr[0] = 1;
-            Arr[rowCount-1] = 1;
-          
-            for(j = 0, x = 1; j < rowCount-2; j++,x++)
-            {
-                    Arr[x] = PreviousRow[j]+PreviousRow[j+1];
-            }
-            
+
+            int i = 0,
+                x = 0,
+                j = 0,
+                rowCount = 1; // row # 1
+            int[] Arr,
+                    PreviousRow;
+
+            IList<int> row = new List<int>();
+            IList<IList<int>> result = new List<IList<int>>();
+
+            // first row of triangle
+            Arr = new int[1] { 1 };
             row = Arr.ToList();
             result.Add(row);
-            PreviousRow = new int[rowCount];
-            Array.Copy(Arr,PreviousRow,Arr.Length);
-            rowCount++;
+
+            // second row of triangle
+            Arr = new int[2] { 1, 1 };
+            row = Arr.ToList();
+            result.Add(row);
+
+            i = 2;
+            rowCount = i + 1;
+            // second row of triangle
             Arr = new int[rowCount];
+            PreviousRow = result[i - 1].ToArray();
+
+            // loop Kth row times... so big O is O(numRows)
+            while (i < numRows)
+            {
+                Arr[0] = 1;
+                Arr[rowCount - 1] = 1;
+
+                // rowCount - 2 entails the first and last number
+                // are already set above on Arr[0] = 1 ....
+                // Big O is, "length of row," - 2
+
+                for (j = 0, x = 1; j < rowCount - 2; j++, x++)
+                {
+                    Arr[x] = PreviousRow[j] + PreviousRow[j + 1];
+                }
+
+                // convert array to list
+                // Order of N operations
+                row = Arr.ToList();
+
+                // store array in list
+                result.Add(row);
+
+                // allocate new array to use for next operation
+                PreviousRow = new int[rowCount];
+
+                // copy current array into reference array used for next operation
+                Array.Copy(Arr, 0, PreviousRow, 0, Arr.Length);
+
+                // count rows completed
+                rowCount++;
+
+                // increment list iterator
+                i++;
+
+                // allocate new array to hold next row to be calculated
+                Arr = new int[rowCount];
+            }
+
+            return result;
         }
-        
-        return result;
-    }
 }
