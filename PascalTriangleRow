@@ -9,67 +9,78 @@
   Overall space complexity O(numRows*numRows)                   
 */
 public class Solution {
-            /// <summary>
+         /// <summary>
         /// Generate the kths rows of a pascal triangle
         /// </summary>
         /// <param name="numRows"></param>
         /// <returns></returns>
-        static public IList<IList<int>> GenerateKthPascals(int numRows)
-        {
-
+        public IList<IList<int>> Generate(int numRows) {
+        
+            if(numRows < 1)
+                throw new Exception("\n Invalid input: numRows");
             int i = 0,
                 x = 0,
                 j = 0,
                 rowCount = 1; // row # 1
-            int[] Arr,
-                    PreviousRow;
+            int[] Arr1 = new int[1],
+                  PreviousRow = new int[1];
 
             IList<int> row = new List<int>();
             IList<IList<int>> result = new List<IList<int>>();
 
             // first row of triangle
-            Arr = new int[1] { 1 };
-            row = Arr.ToList();
+           // Arr1 = new int[1];
+            
+            Arr1[0] = 1;
+            row = Arr1.ToList();
             result.Add(row);
-
+            
+            if(numRows == 1)
+                return result;
+        
             // second row of triangle
-            Arr = new int[2] { 1, 1 };
-            row = Arr.ToList();
+            Arr1 = new int[2];
+            Arr1[0] = 1;
+            Arr1[1] = 1;
+            row = Arr1.ToList();
             result.Add(row);
+        
+             if(numRows == 2)
+                return result;
 
             i = 2;
             rowCount = i + 1;
             // second row of triangle
-            Arr = new int[rowCount];
+            Arr1 = new int[rowCount];
             PreviousRow = result[i - 1].ToArray();
 
-            // loop Kth row times... so big O is O(numRows)
+            // loop Kth row times... so big O is O(numRows * lengthOfRow + numRows + lengthRow), which equals O(numRows*lengthOfRow)
             while (i < numRows)
             {
-                Arr[0] = 1;
-                Arr[rowCount - 1] = 1;
+                Arr1[0] = 1;
+                Arr1[rowCount - 1] = 1;
 
                 // rowCount - 2 entails the first and last number
-                // are already set above on Arr[0] = 1 ....
+                // are already set above on Arr1[0] = 1 ....
                 // Big O is, "length of row," - 2
 
                 for (j = 0, x = 1; j < rowCount - 2; j++, x++)
                 {
-                    Arr[x] = PreviousRow[j] + PreviousRow[j + 1];
+                    Arr1[x] = PreviousRow[j] + PreviousRow[j + 1];
                 }
 
-                // convert array to list
+                // convert Arr1ay to list
                 // Order of N operations
-                row = Arr.ToList();
+                row = Arr1.ToList();
 
-                // store array in list
+                // store Arr1ay in list
                 result.Add(row);
 
-                // allocate new array to use for next operation
+                // allocate new Arr1ay to use for next operation
                 PreviousRow = new int[rowCount];
 
-                // copy current array into reference array used for next operation
-                Array.Copy(Arr, 0, PreviousRow, 0, Arr.Length);
+                // copy current Arr1ay into reference Arr1ay used for next operation
+                Array.Copy(Arr1, 0, PreviousRow, 0, Arr1.Length);
 
                 // count rows completed
                 rowCount++;
@@ -77,10 +88,10 @@ public class Solution {
                 // increment list iterator
                 i++;
 
-                // allocate new array to hold next row to be calculated
-                Arr = new int[rowCount];
+                // allocate new Arr1ay to hold next row to be calculated
+                Arr1 = new int[rowCount];
             }
 
             return result;
-        }
+    }
 }
