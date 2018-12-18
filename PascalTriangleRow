@@ -1,3 +1,13 @@
+/*
+  Big O is O( numRows * lengthOfRow // for each iteration of while loop * for loop
+              + numRows // for copying array to list
+              // additional one access operators can be neglected)
+  Overall run time operation is: O(numRows*lengthOfRow), which is O(numRows*numRows)
+  
+  Space complexity O( numRows // for each list row
+                            + numRows*(numrows-1) // for each row calculated and previous row as reference)
+  Overall space complexity O(numRows*numRows)                   
+*/
 public class Solution {
             /// <summary>
         /// Generate the kths rows of a pascal triangle
