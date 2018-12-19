@@ -1,0 +1,71 @@
+
+/*
+Problem:  
+Given a non-negative index k where k ≤ 33, return the kth index row of the Pascal's triangle.
+
+Note that the row index starts from 0.
+*/
+///
+/*
+  Solution complexity:
+  run time complexity:  O(rowIndex*rowIndexLength) + O(rowIndex), which equals O(rowIndex*rowIndex)
+  space complexity: O(rowIndexLength + rowIndexLength-1), which equals O(rowIndex);
+*/
+///
+public class Solution {
+    public IList<int> GetRow(int rowIndex) {
+        
+        List<int> preRow = new List<int>();
+        IList<int> row = new List<int>();
+        int i = 0;
+        
+        row.Add(1); // 0th row
+        if(rowIndex == 0)
+            return row;
+        row.Add(1); // 1st row
+        if(rowIndex == 1)
+            return row;
+        
+        row.Clear();
+        
+        // 2nd row
+        preRow.Add(1);
+        preRow.Add(2);
+        preRow.Add(1);
+        
+        i = 3;
+        
+        // complexity run time O(rowIndex)
+        while( i <= rowIndex)
+        { 
+            
+            // first element is always 1
+            row.Add(1);
+            
+            // calculate row values from second element to 
+            // second to last element based on previous 
+            // row value
+            // complexity run time O(rowIndexLength)
+            for(int j = 1; j < i; j++)
+            {
+                row.Add(preRow[j-1]+preRow[j]);                
+            }
+            
+            row.Add(1);// last element is always 1
+            
+            preRow.Clear();
+            
+            // this operation takes 
+            // O(rowIndexLength)
+            preRow = new List<int>(row);
+                                  
+            i++;
+            if(i <= rowIndex)
+                 row.Clear();
+            
+        }
+        
+        return row;
+        
+    }
+}
