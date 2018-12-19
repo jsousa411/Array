@@ -1,0 +1,57 @@
+/*
+    Reverse array k times
+    Solution approach is to reverse the whole array
+    then reverse from start to k
+    lastly reverse from k+1 to end of array
+    
+    This has a run time complexity of O(n)+O(n) which
+     is equal to O(n);
+    The memory complexity is O(1) as it only allocates an extra
+    variable to hold the temporary value during sawp
+*/
+
+public class Solution {
+
+    // Rotates array k times
+    // it uses a reverse array function as helper
+    public void Rotate(int[] nums, int k) {
+        
+        // calculate how many time to rotate
+        int p = k%nums.Length;
+        
+        // reverse full array
+        // this has complexity of O(n)
+        Reverse(nums,0,nums.Length-1);
+        
+        // reverse first part of the array
+        // this has run time complexity of O(k)
+        Reverse(nums,0,p-1);
+        
+        // reverse second half of the array
+        // this has run time complexity of O(n-k),
+        // which equals to O(n)
+        Reverse(nums,p,nums.Length-1);
+        
+        
+    } // end rotate array
+    
+    // helper function to reverse array from index start
+    // to index end
+    public static void Reverse(int[] A, int start, int end)
+    {
+        int tmpHolder = 0; // tmp value holder
+        
+        // reverse array from start point 
+        // to end point
+        while(start < end)
+        {
+            tmpHolder = A[start];
+            A[start] = A[end];
+            A[end] = tmpHolder;
+            end--;
+            start++;
+        }     
+        
+                
+    }// end reverse array
+}
