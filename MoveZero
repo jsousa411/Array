@@ -1,0 +1,90 @@
+/*
+Problem:
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Example:
+
+Input: [0,1,0,3,12]
+Output: [1,3,12,0,0]
+*/
+
+/*
+  Solution:
+  Run time complexity O(n) as it passes through array once;
+  Space complexity O(1) as no additional memory is allocated;
+*/
+
+public class Solution {
+    public void MoveZeroes(int[] nums) {
+        int i = 0, // "zero slot marker"
+            j = 0, // array iterator
+            len = nums.Length-1; // length of array
+        public class Solution {
+    public void MoveZeroes(int[] nums) {
+        int i = 0, // "zero slot marker"
+            j = 0, // array iterator
+            tmp,
+            len = nums.Length-1; // length of array
+        
+       
+            
+            
+        // step forward until non zero
+        // then swap with "zero slot marker"
+        while( j <= len )
+        {
+           
+
+            // swap zero with non zero
+            if(nums[j] != 0)
+            {                
+                // verify the "zero slot marker"
+                // is at a zero slot, otherwise
+                // step forward
+                if(nums[i]==0)
+                { 
+                    
+                    tmp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = tmp;
+                        
+                }
+                i++;
+            }
+            j++;
+        } // end traversing array         
+           
+        
+    }// end moving zeros forward
+}
+       
+            
+            
+        // step forward until non zero
+        // then swap with "zero slot marker"
+        while( j <= len )
+        {
+           
+
+            // swap zero with non zero
+            if(nums[j] != 0)
+            {                
+                // verify the "zero slot marker"
+                // is at a zero slot, otherwise
+                // step forward
+                if(nums[i]==0)
+                { 
+                    
+                    int tmp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = tmp;
+                        
+                }
+                i++;
+            }
+            j++;
+        } // end traversing array         
+           
+        
+    }// end moving zeros forward
+}
