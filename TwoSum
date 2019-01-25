@@ -16,7 +16,7 @@ return [0, 1].
 Approach:  calculate the SearchValue to search for 
 by subtracting target - valueInArray
 Iterate through array for SearchValue
-This gives O(n*n) in the worse case
+This gives O(n log n) in the worse case
 */
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
@@ -25,21 +25,20 @@ public class Solution {
         int v1 = 0,
             v2 = 0;
         
-        for(j = 0; j < nums.Length; j++)
+        for(int j = 0; j < nums.Length; j++)
         {
             v1 = nums[j];
             v2 = target - v1;
             
-            for(i = 0; i < nums.Length; i++)
+            for(int i = j+1; i < nums.Length; i++)
             {
-                if(i == j)
-                    continue;
+                 
                 if(nums[i] == v2)
                 {
                     result[0] = j;
                     result[1] = i;
-                    //return result;
-                    break;
+                    return result;
+                    
                 }
             }
         }
