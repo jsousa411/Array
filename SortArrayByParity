@@ -7,7 +7,6 @@ Given an array A of non-negative integers, return an array consisting of all the
 You may return any answer array that satisfies this condition.
 
 */
-
 public class Solution {
     public int[] SortArrayByParity(int[] A) {
         
@@ -21,26 +20,30 @@ public class Solution {
             j = A.Length-1,
             val = 0;
         
-        while(z < A.Length)
+        // approach:
+        // in place swap
+        // iterate from left to right until odd value is found
+        // iterate from right to left until even value is found
+        // swap odd with even value
+        // stop once right to left iteration reaches left to right iteration
+        
+        while(i < j)
         {
-            val = A[z];
-            
-            if(val < 0 || val > 5000)
-                throw new Exception("Invalid input value");
-            
-            if(val % 2 == 0)
-            {
-                OutputArray[i] = val;
+            while(i < j && A[i] % 2 == 0)
                 i++;
-            }
-            else
-            {
-                OutputArray[j] = val;
+            while(j > i && A[j] % 2 == 1)
                 j--;
+            
+            if(i < j)
+            {
+                val = A[i];
+                A[i] = A[j];
+                A[j] = val;
             }
-            z++;
+            i++;
+            j--;
         }
         
-        return OutputArray;
+        return A;
     }
 }
