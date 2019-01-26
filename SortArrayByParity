@@ -1,0 +1,46 @@
+/*
+
+905. Sort Array By Parity
+DescriptionHintsSubmissionsDiscussSolution
+Given an array A of non-negative integers, return an array consisting of all the even elements of A, followed by all the odd elements of A.
+
+You may return any answer array that satisfies this condition.
+
+*/
+
+public class Solution {
+    public int[] SortArrayByParity(int[] A) {
+        
+        if(A.Length < 1 || A.Length > 5000)
+            throw new Exception("Invalid array length");
+        
+        int[] OutputArray = new int[A.Length];
+        
+        int z = 0,
+            i = 0,
+            j = A.Length-1,
+            val = 0;
+        
+        while(z < A.Length)
+        {
+            val = A[z];
+            
+            if(val < 0 || val > 5000)
+                throw new Exception("Invalid input value");
+            
+            if(val % 2 == 0)
+            {
+                OutputArray[i] = val;
+                i++;
+            }
+            else
+            {
+                OutputArray[j] = val;
+                j--;
+            }
+            z++;
+        }
+        
+        return OutputArray;
+    }
+}
