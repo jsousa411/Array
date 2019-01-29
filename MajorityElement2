@@ -1,0 +1,51 @@
+/*
+229. Majority Element II
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+
+Note: The algorithm should run in linear time and in O(1) space.
+
+Example 1:
+
+Input: [3,2,3]
+Output: [3]
+Example 2:
+
+Input: [1,1,1,3,3,2,2,2]
+Output: [1,2]
+*/
+
+/*
+Approach:  Store data and its frequency in a dictionary then return 
+the key value's that are greater than 1/3 of input array length
+*/
+public class Solution {
+    public IList<int> MajorityElement(int[] nums) {
+        
+        Dictionary<int,int> DataCount = new Dictionary<int,int>();
+        int Count = nums.Length/3;
+        IList<int> Result = new List<int>();
+        
+        foreach(int x in nums)
+        {
+            if(DataCount.ContainsKey(x))
+            {
+                DataCount[x] +=1;
+            }
+            else
+            {
+                DataCount.Add(x,1);
+            }
+        }
+        
+        foreach(KeyValuePair<int,int> x in DataCount)
+        {
+            if(DataCount[x.Key] > Count)
+            {
+                Result.Add(x.Key);
+            }
+        }
+        
+        return Result;
+        
+    }
+}
