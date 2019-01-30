@@ -1,0 +1,41 @@
+public class Solution {
+    
+    public int MaxProfit(int[] prices) {
+        
+        if(prices.Length < 2)
+            return 0;
+        
+        int i = 0,
+            j = 1,
+            Buy = prices[i],
+            Sell = prices[j],
+            Max = Sell - Buy;
+        
+        if(Max < 0 )
+            Max = 0;
+        
+        while(j < prices.Length)
+        {
+            if(prices[j] < Buy )
+            {
+                Buy = prices[j];
+            }
+            else if( Max < prices[j] - Buy)
+            {
+                
+                Max = prices[j] - Buy;
+            }
+            
+            
+            j++;
+        }
+        
+       
+        
+        if(Max > 0)
+            return Max;
+        
+        return 0;
+        
+    }
+}
