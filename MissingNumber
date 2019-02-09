@@ -1,0 +1,33 @@
+/*
+
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+
+Example 1:
+
+Input: [3,0,1]
+Output: 2
+Example 2:
+
+Input: [9,6,4,2,3,5,7,0,1]
+Output: 8
+
+*/
+
+public class Solution {
+    public int MissingNumber(int[] nums) {
+        
+        int i = 0, 
+        Sum = 0;
+        
+        for(; i < nums.Length; i++)
+        {
+            Sum += nums[i];
+        }
+        
+        // the sum of n integers = n*(n+1)/2
+        // subtract sum of n integers from sum of array
+        // to find missing number
+        return (i*(i+1)/2) - Sum;
+        
+    }
+}
