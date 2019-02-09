@@ -14,26 +14,23 @@ Output: 3
 public class Solution {
     public int FindDuplicate(int[] nums) {
        
-      int   first = 0,
-            second = nums[0],
-            Value1 = nums[0],
-            Value2 = 0;
+      int   First = nums[0],
+            Second = nums[0];
         
         do
         {
             
-            first = nums[first];
-            second = nums[nums[second]];
+            First = nums[First];
+            Second = nums[nums[Second]];
             
-        }while(first!=second);
+        }while(First!=Second);
  
          
-        Value1 = nums[0];
-        Value2 = first;
+        int Value1 = nums[0],
+            Value2 = First;
         
         while(Value1 != Value2)
-        {
-           // Console.WriteLine($"V1 {Value1} and V2 {Value2}");
+        {             
             Value1 = nums[Value1];
             Value2 = nums[Value2];
             
