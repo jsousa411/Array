@@ -1,0 +1,83 @@
+/*
+Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+
+Note:
+
+The number of elements initialized in nums1 and nums2 are m and n respectively.
+You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.
+Example:
+
+Input:
+nums1 = [1,2,3,0,0,0], m = 3
+nums2 = [2,5,6],       n = 3
+
+Output: [1,2,2,3,5,6]
+*/
+
+public class Solution {
+    public void Merge(int[] nums1, int m, int[] nums2, int n) {
+        
+        int i = m-1, // nums1 m iterator
+            j = nums1.Length-1,// nums1 full iterator
+            p = n-1, // nums2 n iterator
+            t1 = 0, // temporary data holders
+            t2 = 0;
+        
+        // if only nums2 has data
+        // copy nums2 to nums1
+        if( m == 0 && n > 0)
+        {
+            while(j >= 0)
+            {
+                nums1[j] = nums2[j];
+                j--;
+            }
+        }
+        
+        //nums1 and nums2 has data
+        while( j >= 0 && n > 0)
+        {
+            // hold temporary value
+            // to avoid data loss
+            t1 = nums1[i];
+            t2 = nums2[p];
+            
+            // compare which is largest
+            // and set it at end of array
+            if(t1 > t2)
+            {
+                nums1[j] = t1;
+                i--;
+            }
+            else
+            {
+                nums1[j] = t2;
+                p--;
+            }       
+            
+            // decrement to next slot of nums1
+            j--;
+        
+            // verify nums2 is completed
+            if(p < 0 )
+            {
+                break;
+            }
+            
+            // verify if nums1 m is completed
+            // if so then just copy remaining nums2 into nums1
+            if( i < 0)
+            {
+                // if nums2 has more data
+                // copy it over
+                while( p >= 0 && j >= 0)
+                {
+                    nums1[j--] = nums2[p--];
+                }
+                break;// break out of loop
+            }
+        
+        }
+        
+    }// end array merge
+}
