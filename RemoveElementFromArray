@@ -1,0 +1,30 @@
+//removes elemenent in place from array by moving it to the last position of array
+//and decreasing size of array
+public class Solution {
+    public int RemoveElement(int[] nums, int val) {
+        
+        int i = 0,
+            j = nums.Length-1,
+            Count = nums.Length;
+        
+        while(i <= j)
+        {
+            if(nums[i] == val)
+            {
+                while(nums[j]==val && j > i)
+                {
+                   j--;
+                   Count--;
+                }
+                
+                if(j < i)
+                    break;
+                
+                nums[i] = nums[j--];
+                Count--;
+            }
+            i++;
+        }
+        return Count;
+    }
+}
