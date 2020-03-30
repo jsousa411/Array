@@ -1,0 +1,61 @@
+public class Solution {
+    public int[] DecompressRLElist(int[] nums) {
+        
+        int[] DecompressedArray;
+        int DecompressedLength = 0,
+            FrequencyCount = 0,
+            Last = 0,
+            Value = 0;
+        
+        if(nums.Length < 2 || nums.Length > 100 || nums.Length % 2 == 1)
+        {
+            throw new Exception("Invalid array input");
+        }
+        
+        // sum up all frequencies to get total length of new array
+        for(int i = 0; i < nums.Length;)
+        {
+            if(nums[i] < 1 || nums[i] > 100)
+            {
+                throw new Exception("invalid array input value");
+            }
+            
+            DecompressedLength += nums[i];
+            
+            i+=2;
+            
+        }
+        
+        // allocate memory
+        DecompressedArray = new int[DecompressedLength];
+        
+        // assign values to new array
+        for(int i = 0; i < nums.Length; i+=2)
+        {
+            // get frequency and value
+            FrequencyCount = Last + nums[i];
+            Value = nums[i+1];
+            
+            // check for correct input
+            if(Value < 1 || Value > 100)
+            {
+                throw new Exception("invalid array input value");
+            }
+            
+            // assign value to array             
+            for(int j = Last; j < FrequencyCount; j ++)
+            {
+                
+                DecompressedArray[j] = Value;
+                
+            }
+            
+            // increment counter of position in return array
+            Last += nums[i];
+            
+        }
+        
+        // return array value
+        return DecompressedArray;
+    }
+}
